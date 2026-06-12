@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fakturku — Buat Invoice, Kwitansi & Surat Penawaran Gratis (Tanpa Daftar)</title>
+<meta name="description" content="Buat invoice, kwitansi, surat penawaran, dan proforma invoice profesional secara gratis. Tanpa daftar, tanpa watermark, langsung cetak/PDF. Terbilang otomatis. Data tersimpan di perangkat Anda.">
+<meta name="keywords" content="buat invoice gratis, invoice online, kwitansi online, surat penawaran, proforma invoice, template invoice UMKM, faktur penjualan">
+<meta property="og:title" content="Fakturku — Buat Invoice & Dokumen Usaha Gratis">
+<meta property="og:description" content="Invoice, kwitansi, surat penawaran & proforma invoice profesional. Gratis, tanpa daftar, langsung PDF.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fakturku","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"},"description":"Generator invoice, kwitansi, surat penawaran, dan proforma invoice gratis untuk UMKM Indonesia.","inLanguage":"id"}
+</script>
+<style>
+:root{--navy:#1f3864;--teal:#0f766e;--light:#f2f6fa;--band:#dce6f1;--gray:#6b7280;--red:#b91c1c;--green:#15803d;--border:#d8e0ea;--ink:#1f2937}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#eef2f7;color:var(--ink);font-size:14px}
+header{background:var(--navy);color:#fff;padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header .logo{font-size:20px;font-weight:700;letter-spacing:.3px}
+header .logo span{color:#7fd1c7}
+header .tag{font-size:11.5px;opacity:.75}
+.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.tabs button{background:rgba(255,255,255,.12);border:none;color:#fff;padding:8px 14px;border-radius:6px;cursor:pointer;font-size:13px}
+.tabs button.active{background:#fff;color:var(--navy);font-weight:600}
+.wrap{display:flex;gap:18px;padding:18px;max-width:1380px;margin:0 auto;align-items:flex-start}
+.panel{background:#fff;border:1px solid var(--border);border-radius:10px;flex:0 0 430px;max-width:430px;overflow:hidden}
+.panel h2{background:var(--band);color:var(--navy);font-size:13px;padding:9px 14px;letter-spacing:.2px}
+.panel section{padding:12px 14px;border-bottom:1px solid var(--border)}
+.panel details{border-bottom:1px solid var(--border)}
+.panel details summary{padding:10px 14px;font-weight:600;color:var(--navy);cursor:pointer;font-size:13px;background:#f8fafc}
+.panel details .inner{padding:12px 14px}
+.f{display:flex;flex-direction:column;gap:3px;margin-bottom:9px}
+.f label{font-size:11.5px;color:var(--gray);font-weight:600}
+.f input,.f textarea,.f select{border:1px solid var(--border);border-radius:6px;padding:7px 9px;font-size:13px;font-family:inherit;background:var(--light);color:#1d4ed8}
+.f textarea{resize:vertical;min-height:40px}
+.row2{display:flex;gap:8px}.row2 .f{flex:1}
+.row3{display:flex;gap:8px}.row3 .f{flex:1}
+.items-table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.items-table th{background:var(--teal);color:#fff;font-size:11px;padding:5px 4px;text-align:center}
+.items-table td{padding:3px 2px}
+.items-table input{width:100%;border:1px solid var(--border);border-radius:4px;padding:5px 6px;font-size:12.5px;background:var(--light);color:#1d4ed8}
+.items-table .del{background:#fee2e2;color:var(--red);border:none;border-radius:4px;cursor:pointer;padding:5px 8px;font-weight:700}
+.add-row{background:var(--teal);color:#fff;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;font-size:12.5px}
+.btn-print{background:var(--green);color:#fff;border:none;border-radius:8px;padding:12px 18px;font-size:15px;font-weight:700;cursor:pointer;width:100%;margin-top:4px}
+.btn-print:hover{filter:brightness(1.08)}
+.hint{font-size:11px;color:var(--gray);margin-top:6px;line-height:1.5}
+.preview-area{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0}
+.preview-scroll{overflow:auto;display:flex;justify-content:center}
+.paper{background:#fff;width:210mm;min-height:285mm;padding:14mm 14mm 12mm;box-shadow:0 2px 14px rgba(15,40,80,.18);font-family:Arial,Helvetica,sans-serif;color:#111;font-size:12.5px;line-height:1.45}
+.cta{background:linear-gradient(90deg,var(--navy),#2a4a82);color:#fff;border-radius:10px;padding:12px 16px;font-size:13px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cta a{background:#fff;color:var(--navy);padding:8px 14px;border-radius:7px;text-decoration:none;font-weight:700;font-size:12.5px;white-space:nowrap}
+/* ===== paper layouts ===== */
+.p-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.p-head .biz .nm{font-size:19px;font-weight:700;color:var(--navy)}
+.p-head .biz .sub{font-size:10.5px;color:#666;margin-top:2px;line-height:1.5}
+.p-head .doc-t{font-size:24px;font-weight:700;color:#9ca3af;letter-spacing:1px;text-align:right}
+.p-head img.plogo{max-height:58px;max-width:140px;object-fit:contain;margin-right:10px}
+.p-meta{margin-top:4px;font-size:11px;text-align:right;color:#333}
+.p-meta b{display:inline-block;min-width:84px;text-align:left;color:#555}
+.divider{height:3px;background:var(--navy);margin:10px 0 14px}
+.bill-to .cap{font-size:10.5px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.5px}
+.bill-to .nm{font-weight:700;font-size:13.5px;margin-top:2px}
+.bill-to .ad{font-size:11.5px;color:#333;white-space:pre-line}
+table.itm{width:100%;border-collapse:collapse;margin-top:14px}
+table.itm th{background:var(--teal);color:#fff;font-size:11px;padding:7px 6px;border:1px solid #0d655e}
+table.itm td{border:1px solid #cfd8e3;padding:6px;font-size:11.5px;vertical-align:top}
+table.itm .c{text-align:center}.r{text-align:right}
+.tot-zone{display:flex;justify-content:space-between;margin-top:12px;gap:18px}
+.pay-info{font-size:11.5px;line-height:1.6}
+.pay-info .cap{font-size:10.5px;font-weight:700;color:var(--teal);text-transform:uppercase}
+.tots{min-width:255px;font-size:11.5px}
+.tots .tr{display:flex;justify-content:space-between;padding:4px 8px;border-bottom:1px solid #e5eaf1}
+.tots .tr.grand{background:var(--navy);color:#fff;font-weight:700;font-size:13px;padding:7px 8px}
+.tots .tr.sisa{background:#fdecec;color:var(--red);font-weight:700}
+.note-sign{display:flex;justify-content:space-between;margin-top:22px;gap:18px}
+.note-sign .nt{font-size:10.5px;color:#555;max-width:54%}
+.note-sign .nt .cap{font-weight:700;color:#333}
+.sig{text-align:center;font-size:11.5px;min-width:190px}
+.sig .nm{margin-top:54px;font-weight:700;border-bottom:1.4px solid #444;display:inline-block;padding:0 16px 2px}
+.sig .jb{font-size:10.5px;color:#666;margin-top:2px}
+.thanks{text-align:center;font-style:italic;color:#777;font-size:10.5px;margin-top:26px}
+.terbilang-box{background:var(--light);border:1px dashed #9db4cd;border-radius:6px;padding:7px 10px;font-style:italic;font-size:12px;margin-top:10px}
+/* kwitansi */
+.kw-frame{border:2.5px solid var(--navy);border-radius:8px;padding:26px 30px;margin-top:8px}
+.kw-title{text-align:center;font-size:22px;font-weight:700;color:var(--navy);letter-spacing:2px}
+.kw-no{text-align:center;font-size:11px;color:#666;margin-top:2px}
+.kw-row{display:flex;margin-top:16px;font-size:12.5px;align-items:flex-end;gap:12px}
+.kw-row .lb{flex:0 0 150px;color:#555}
+.kw-row .vl{flex:1;border-bottom:1.4px dotted #888;padding:2px 6px;font-weight:600}
+.kw-row .vl.em{font-style:italic;background:var(--light)}
+.kw-foot{display:flex;justify-content:space-between;margin-top:30px;align-items:flex-end}
+.kw-amt{background:var(--navy);color:#fff;font-size:18px;font-weight:700;padding:12px 26px;border-radius:6px}
+/* letter */
+.lt-kop{text-align:center}
+.lt-kop .nm{font-size:18px;font-weight:700;color:var(--navy)}
+.lt-kop .ad{font-size:10.5px;color:#555;line-height:1.5}
+.lt-meta{display:flex;justify-content:space-between;margin-top:14px;font-size:12px}
+.lt-block{margin-top:14px;font-size:12.5px;line-height:1.55}
+@media print{
+  body{background:#fff}
+  header,.panel,.cta,.faq,footer,.preview-area .toolbar{display:none!important}
+  .wrap{padding:0;display:block}
+  .preview-scroll{overflow:visible}
+  .paper{box-shadow:none;width:auto;min-height:0;padding:0;margin:0}
+  @page{size:A4;margin:13mm}
+}
+@media(max-width:980px){.wrap{flex-direction:column}.panel{max-width:none;flex:1;width:100%}.paper{width:100%;min-height:0;padding:18px}}
+.faq{max-width:1380px;margin:8px auto 0;padding:0 18px 30px}
+.faq h2{color:var(--navy);font-size:17px;margin:18px 0 8px}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;padding:11px 15px}
+.faq summary{font-weight:600;cursor:pointer;font-size:13.5px}
+.faq p{font-size:13px;color:#444;margin-top:8px;line-height:1.65}
+footer{background:var(--navy);color:#cdd8ea;text-align:center;padding:18px;font-size:12px;line-height:1.7}
+footer a{color:#7fd1c7}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="logo">Faktur<span>ku</span></div>
+    <div class="tag">Buat dokumen usaha profesional — gratis, tanpa daftar</div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button data-t="invoice" class="active">Invoice</button>
+    <button data-t="kwitansi">Kwitansi</button>
+    <button data-t="penawaran">Surat Penawaran</button>
+    <button data-t="quotation">Quotation (EN)</button>
+    <button data-t="proforma">Proforma (EN)</button>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div class="panel" id="formPanel">
+    <h2>ISI DATA — otomatis tersimpan di perangkat Anda</h2>
+    <details id="profilBox">
+      <summary>1 · Profil Usaha Anda (isi sekali)</summary>
+      <div class="inner" id="profilForm"></div>
+    </details>
+    <details open>
+      <summary>2 · Data Dokumen</summary>
+      <div class="inner" id="docForm"></div>
+    </details>
+    <section>
+      <button class="btn-print" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+      <div class="hint">Tips: di dialog cetak pilih "Save as PDF". Data Anda hanya tersimpan di browser ini (localStorage) — tidak dikirim ke server mana pun.</div>
+    </section>
+  </div>
+
+  <div class="preview-area">
+    <div class="cta">
+      <div>📦 <b>Butuh sistem lengkap?</b> Paket Template Excel UMKM: pembukuan kas, stok, piutang, invoice — siap pakai.</div>
+      <a id="ctaLink" href="paket.html" target="_blank" rel="noopener">Lihat Paket — UMKM Beres</a>
+    </div>
+    <div class="preview-scroll"><div class="paper" id="paper"></div></div>
+  </div>
+</div>
+
+<div class="faq">
+  <h2>Pertanyaan Umum</h2>
+  <details><summary>Apakah Fakturku benar-benar gratis?</summary><p>Ya, 100% gratis tanpa watermark dan tanpa perlu mendaftar. Fakturku dibuat oleh <b>UMKM Beres</b>. Kalau Anda butuh sistem administrasi lebih lengkap (pembukuan kas, stok, piutang dalam Excel), kami menyediakan paket berbayar — itu cara kami tetap hidup.</p></details>
+  <details><summary>Apakah data saya aman?</summary><p>Semua data hanya tersimpan di browser Anda (localStorage) dan tidak pernah dikirim ke server. Menutup tab tidak menghapus data; menghapus riwayat/cache browser bisa menghapusnya.</p></details>
+  <details><summary>Bagaimana cara menyimpan sebagai PDF?</summary><p>Klik tombol <b>Cetak / Simpan PDF</b>, lalu pada pilihan printer pilih <b>"Save as PDF"</b>. Dokumen sudah diatur pas untuk kertas A4.</p></details>
+  <details><summary>Apakah terbilang ditulis otomatis?</summary><p>Ya. Untuk kwitansi dan invoice, angka terbilang dalam Bahasa Indonesia (dan Bahasa Inggris untuk proforma invoice) dibuat otomatis dan selalu akurat.</p></details>
+  <details><summary>Apakah bisa pakai logo usaha sendiri?</summary><p>Bisa — unggah logo di bagian Profil Usaha, logo akan tampil di kiri atas dokumen. Logo juga hanya tersimpan di perangkat Anda.</p></details>
+</div>
+
+<footer>
+  <b>Fakturku</b> — bagian dari <b>UMKM Beres</b> · Alat administrasi untuk UMKM Indonesia<br>
+  Gratis selamanya · Tanpa daftar · Data milik Anda sepenuhnya<br>
+  <span id="year"></span> © UMKM Beres
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const LS="fakturku_v1";
+const defaultState={
+ profile:{nama:"",tagline:"",alamat1:"",alamat2:"",telp:"",email:"",bank:"",rek:"",an:"",swift:"",kota:"",ttd:"",jabatan:"",logo:""},
+ docs:{
+  invoice:{no:"INV-001",tgl:today(),tempo:"",kNama:"",kAlamat:"",kTelp:"",items:[{d:"",q:1,s:"pcs",h:0}],diskon:0,ppn:false,ppnRate:11,dp:0,catatan:"Pembayaran dianggap sah setelah dana diterima. Mohon konfirmasi setelah transfer."},
+  kwitansi:{no:"KW-001",tgl:today(),dari:"",untuk:"",jumlah:0,metode:"Transfer"},
+  penawaran:{no:"001/PNW/"+new Date().getFullYear(),tgl:today(),berlaku:"",kNama:"",kUp:"",kAlamat:"",perihal:"",items:[{d:"",q:1,s:"pcs",h:0}],diskon:0,ppn:false,ppnRate:11,bayar:"DP 50%, pelunasan sebelum pengiriman",kirim:"3-5 hari kerja setelah DP diterima"},
+  quotation:{no:"001/QTN/"+new Date().getFullYear(),tgl:today(),berlaku:"",kNama:"",kUp:"",kAlamat:"",perihal:"",items:[{d:"",q:1,s:"pcs",h:0}],diskon:0,ppn:false,ppnRate:11,bayar:"50% down payment, balance before delivery",kirim:"3-5 working days after down payment"},
+  proforma:{no:"PI-001",tgl:today(),berlaku:"",kNama:"",kAlamat:"",kNegara:"",items:[{d:"",q:1,s:"pcs",h:0}],cur:"USD",bayar:"T/T 50% advance, balance against B/L copy",words:""}
+ }
+};
+let state=load();let cur="invoice";
+function today(){const d=new Date();return d.toISOString().slice(0,10)}
+function load(){try{const s=JSON.parse(localStorage.getItem(LS));if(s&&s.profile&&s.docs){for(const k in defaultState.docs){if(!s.docs[k])s.docs[k]=defaultState.docs[k]}return s}}catch(e){}return JSON.parse(JSON.stringify(defaultState))}
+function save(){localStorage.setItem(LS,JSON.stringify(state))}
+function fmtRp(n){n=Number(n)||0;return"Rp "+n.toLocaleString("id-ID")}
+function fmtCur(n,c){n=Number(n)||0;return c+" "+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmtTgl(s){if(!s)return"";const[y,m,d]=s.split("-");return`${d}/${m}/${y}`}
+function esc(t){return String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+/* ---------- terbilang ID ---------- */
+const ang=["","satu","dua","tiga","empat","lima","enam","tujuh","delapan","sembilan","sepuluh","sebelas"];
+function tb(n){n=Math.floor(Math.abs(n));
+ if(n<12)return ang[n];
+ if(n<20)return tb(n-10)+" belas";
+ if(n<100)return tb(Math.floor(n/10))+" puluh"+(n%10?" "+tb(n%10):"");
+ if(n<200)return"seratus"+(n%100?" "+tb(n%100):"");
+ if(n<1000)return tb(Math.floor(n/100))+" ratus"+(n%100?" "+tb(n%100):"");
+ if(n<2000)return"seribu"+(n%1000?" "+tb(n%1000):"");
+ if(n<1e6)return tb(Math.floor(n/1000))+" ribu"+(n%1000?" "+tb(n%1000):"");
+ if(n<1e9)return tb(Math.floor(n/1e6))+" juta"+(n%1e6?" "+tb(n%1e6):"");
+ if(n<1e12)return tb(Math.floor(n/1e9))+" miliar"+(n%1e9?" "+tb(n%1e9):"");
+ return tb(Math.floor(n/1e12))+" triliun"+(n%1e12?" "+tb(n%1e12):"")}
+function terbilang(n){n=Number(n)||0;if(n===0)return"nol rupiah";const t=tb(n)+" rupiah";return t.charAt(0).toUpperCase()+t.slice(1)}
+/* ---------- number to words EN ---------- */
+const onesEN=["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+const tensEN=["","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"];
+function w3(n){let s="";if(n>=100){s+=onesEN[Math.floor(n/100)]+" hundred";n%=100;if(n)s+=" "}if(n>=20){s+=tensEN[Math.floor(n/10)];if(n%10)s+="-"+onesEN[n%10]}else if(n>0)s+=onesEN[n];return s}
+function wordsEN(n){n=Math.floor(Math.abs(Number(n)||0));if(n===0)return"zero";const seg=[[1e9,"billion"],[1e6,"million"],[1e3,"thousand"]];let s="";for(const[v,nm]of seg){if(n>=v){s+=(s?" ":"")+w3(Math.floor(n/v))+" "+nm;n%=v}}if(n)s+=(s?" ":"")+w3(n);return s}
+function amountWordsEN(n,curName){const i=Math.floor(n);const c=Math.round((n-i)*100);let t=curName+" "+wordsEN(i);if(c)t+=" and cents "+wordsEN(c);return(t+" only").replace(/\b\w/,m=>m.toUpperCase())}
+
+/* ---------- form builders ---------- */
+function fld(label,key,val,type="text",ph=""){return`<div class="f"><label>${label}</label><input type="${type}" data-k="${key}" value="${esc(val)}" placeholder="${esc(ph)}"></div>`}
+function area(label,key,val,ph=""){return`<div class="f"><label>${label}</label><textarea data-k="${key}" placeholder="${esc(ph)}">${esc(val)}</textarea></div>`}
+
+function renderProfil(){
+ const p=state.profile;
+ $("profilForm").innerHTML=
+  fld("Nama Usaha","p.nama",p.nama,"text","Toko Berkah Jaya")+
+  fld("Bidang / Tagline","p.tagline",p.tagline,"text","Sembako & Kebutuhan Harian")+
+  fld("Alamat baris 1","p.alamat1",p.alamat1)+
+  fld("Alamat baris 2","p.alamat2",p.alamat2)+
+  `<div class="row2">${fld("Telp / WA","p.telp",p.telp)}${fld("Email","p.email",p.email)}</div>`+
+  `<div class="row3">${fld("Bank","p.bank",p.bank)}${fld("No. Rekening","p.rek",p.rek)}${fld("Atas Nama","p.an",p.an)}</div>`+
+  fld("SWIFT Code (untuk proforma/ekspor, opsional)","p.swift",p.swift)+
+  `<div class="row3">${fld("Kota","p.kota",p.kota)}${fld("Nama Penandatangan","p.ttd",p.ttd)}${fld("Jabatan","p.jabatan",p.jabatan)}</div>`+
+  `<div class="f"><label>Logo (opsional)</label><input type="file" id="logoUp" accept="image/*"></div>`+
+  (p.logo?`<button class="add-row" style="background:#b91c1c" onclick="state.profile.logo='';save();renderAll()">Hapus Logo</button>`:"");
+ const lu=$("logoUp");
+ if(lu)lu.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.profile.logo=r.result;save();renderAll()};r.readAsDataURL(f)};
+}
+
+function itemsTable(items,withSatuan=true){
+ let h=`<table class="items-table"><tr><th style="width:44%">Deskripsi</th><th>Qty</th>${withSatuan?"<th>Satuan</th>":""}<th>Harga</th><th></th></tr>`;
+ items.forEach((it,i)=>{h+=`<tr>
+  <td><input data-it="${i}" data-f="d" value="${esc(it.d)}" placeholder="Barang / jasa"></td>
+  <td style="width:54px"><input data-it="${i}" data-f="q" type="number" min="0" step="any" value="${it.q}"></td>
+  ${withSatuan?`<td style="width:62px"><input data-it="${i}" data-f="s" value="${esc(it.s)}"></td>`:""}
+  <td style="width:94px"><input data-it="${i}" data-f="h" type="number" min="0" step="any" value="${it.h}"></td>
+  <td><button class="del" data-del="${i}">×</button></td></tr>`});
+ h+=`</table><button class="add-row" id="addRow">+ Tambah Baris</button>`;
+ return h}
+
+function renderDocForm(){
+ const d=state.docs[cur];let h="";
+ if(cur==="invoice"){
+  h=`<div class="row3">${fld("No. Invoice","d.no",d.no)}${fld("Tanggal","d.tgl",d.tgl,"date")}${fld("Jatuh Tempo","d.tempo",d.tempo,"date")}</div>`+
+   fld("Nama Pelanggan","d.kNama",d.kNama,"text","Ibu Sari (Warung Sari Rasa)")+
+   area("Alamat Pelanggan","d.kAlamat",d.kAlamat)+fld("Telp Pelanggan","d.kTelp",d.kTelp)+
+   itemsTable(d.items)+
+   `<div class="row3">${fld("Diskon (Rp)","d.diskon",d.diskon,"number")}${fld("DP/Terbayar (Rp)","d.dp",d.dp,"number")}
+    <div class="f"><label>PPN</label><select data-k="d.ppn"><option value="no"${d.ppn?"":" selected"}>Tidak</option><option value="yes"${d.ppn?" selected":""}>Ya</option></select></div></div>`+
+   (d.ppn?fld("Tarif PPN (%)","d.ppnRate",d.ppnRate,"number"):"")+
+   area("Catatan","d.catatan",d.catatan);
+ }else if(cur==="kwitansi"){
+  h=`<div class="row2">${fld("No. Kwitansi","d.no",d.no)}${fld("Tanggal","d.tgl",d.tgl,"date")}</div>`+
+   fld("Sudah terima dari","d.dari",d.dari)+
+   area("Untuk pembayaran","d.untuk",d.untuk)+
+   fld("Jumlah (Rp)","d.jumlah",d.jumlah,"number")+
+   `<div class="f"><label>Metode</label><select data-k="d.metode">${["Tunai","Transfer","QRIS","Lainnya"].map(m=>`<option${m===d.metode?" selected":""}>${m}</option>`).join("")}</select></div>`+
+   `<div class="hint">Terbilang dibuat otomatis: <i id="tbPrev"></i></div>`;
+ }else if(cur==="penawaran"||cur==="quotation"){
+  const EN=cur==="quotation";
+  h=`<div class="row3">${fld(EN?"Quotation No.":"No. Surat","d.no",d.no)}${fld(EN?"Date":"Tanggal","d.tgl",d.tgl,"date")}${fld(EN?"Valid Until":"Berlaku s/d","d.berlaku",d.berlaku,"date")}</div>`+
+   fld(EN?"Company":"Perusahaan / Nama","d.kNama",d.kNama)+
+   fld(EN?"Attn":"UP (untuk perhatian)","d.kUp",d.kUp)+
+   area(EN?"Address":"Alamat","d.kAlamat",d.kAlamat)+
+   fld(EN?"Subject":"Perihal","d.perihal",d.perihal,"text",EN?"Price Quotation for ...":"Penawaran Harga ...")+
+   itemsTable(d.items)+
+   `<div class="row3">${fld(EN?"Discount (Rp)":"Diskon (Rp)","d.diskon",d.diskon,"number")}
+    <div class="f"><label>PPN/VAT</label><select data-k="d.ppn"><option value="no"${d.ppn?"":" selected"}>${EN?"No":"Tidak"}</option><option value="yes"${d.ppn?" selected":""}>${EN?"Yes":"Ya"}</option></select></div>
+    ${d.ppn?fld(EN?"VAT (%)":"Tarif PPN (%)","d.ppnRate",d.ppnRate,"number"):""}</div>`+
+   fld(EN?"Payment Terms":"Syarat Pembayaran","d.bayar",d.bayar)+
+   fld(EN?"Delivery":"Pengiriman","d.kirim",d.kirim);
+ }else if(cur==="proforma"){
+  h=`<div class="row3">${fld("Proforma No.","d.no",d.no)}${fld("Date","d.tgl",d.tgl,"date")}${fld("Valid Until","d.berlaku",d.berlaku,"date")}</div>`+
+   fld("Buyer / Consignee","d.kNama",d.kNama)+
+   area("Buyer Address","d.kAlamat",d.kAlamat)+
+   fld("Country","d.kNegara",d.kNegara)+
+   `<div class="f"><label>Currency</label><select data-k="d.cur">${["USD","EUR","SGD","IDR"].map(c=>`<option${c===d.cur?" selected":""}>${c}</option>`).join("")}</select></div>`+
+   itemsTable(d.items)+
+   fld("Payment Terms","d.bayar",d.bayar)+
+   `<div class="hint">Amount in words dibuat otomatis dalam Bahasa Inggris.</div>`;
+ }
+ $("docForm").innerHTML=h;
+ if(cur==="kwitansi"){const t=$("tbPrev");if(t)t.textContent=terbilang(state.docs.kwitansi.jumlah)}
+ const ar=$("addRow");
+ if(ar)ar.onclick=()=>{state.docs[cur].items.push({d:"",q:1,s:"pcs",h:0});save();renderAll()};
+ document.querySelectorAll("#docForm .del").forEach(b=>b.onclick=()=>{const i=+b.dataset.del;state.docs[cur].items.splice(i,1);if(!state.docs[cur].items.length)state.docs[cur].items.push({d:"",q:1,s:"pcs",h:0});save();renderAll()});
+}
+
+/* ---------- calc ---------- */
+function calc(d){
+ const sub=d.items.reduce((a,it)=>a+(Number(it.q)||0)*(Number(it.h)||0),0);
+ const disk=Number(d.diskon)||0;
+ const ppn=d.ppn?Math.max(0,sub-disk)*(Number(d.ppnRate)||0)/100:0;
+ const tot=sub-disk+ppn;
+ return{sub,disk,ppn,tot,sisa:tot-(Number(d.dp)||0)}}
+
+/* ---------- paper renderers ---------- */
+function bizHead(docTitle){
+ const p=state.profile;
+ return`<div class="p-head">
+  <div style="display:flex;align-items:flex-start">
+   ${p.logo?`<img class="plogo" src="${p.logo}" alt="logo">`:""}
+   <div class="biz"><div class="nm">${esc(p.nama||"Nama Usaha Anda")}</div>
+   <div class="sub">${esc(p.tagline)}${p.tagline?"<br>":""}${esc(p.alamat1)}${p.alamat1?"<br>":""}${esc(p.alamat2)}${p.alamat2?"<br>":""}${p.telp?"Telp/WA: "+esc(p.telp):""}${p.email?(p.telp?" | ":"")+"Email: "+esc(p.email):""}</div></div>
+  </div>
+  <div><div class="doc-t">${docTitle}</div><div class="p-meta" id="metaSlot"></div></div>
+ </div>`}
+
+function itemRows(items,curr){
+ const isRp=!curr;
+ const f=v=>isRp?fmtRp(v):fmtCur(v,curr);
+ let rows="";items.filter(it=>it.d||Number(it.h)).forEach((it,i)=>{
+  const jml=(Number(it.q)||0)*(Number(it.h)||0);
+  rows+=`<tr><td class="c">${i+1}</td><td>${esc(it.d)}</td><td class="c">${esc(it.q)}</td><td class="c">${esc(it.s)}</td><td class="r">${f(it.h)}</td><td class="r">${f(jml)}</td></tr>`});
+ for(let i=items.filter(it=>it.d||Number(it.h)).length;i<4;i++)rows+=`<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td></tr>`;
+ return rows}
+
+function renderInvoice(){
+ const d=state.docs.invoice,p=state.profile,c=calc(d);
+ let h=bizHead("INVOICE");
+ h+=`<div class="divider"></div>
+ <div class="bill-to"><div class="cap">Tagihan Kepada</div><div class="nm">${esc(d.kNama||"—")}</div><div class="ad">${esc(d.kAlamat)}</div>${d.kTelp?`<div class="ad">Telp/WA: ${esc(d.kTelp)}</div>`:""}</div>
+ <table class="itm"><tr><th style="width:5%">No</th><th>Deskripsi</th><th style="width:8%">Qty</th><th style="width:9%">Satuan</th><th style="width:16%">Harga (Rp)</th><th style="width:17%">Jumlah (Rp)</th></tr>${itemRows(d.items)}</table>
+ <div class="tot-zone">
+  <div class="pay-info"><div class="cap">Pembayaran ke</div><b>${esc(p.bank||"-")} — ${esc(p.rek||"-")}</b><br>a.n. ${esc(p.an||"-")}
+   <div class="terbilang-box"><b>Terbilang:</b> ${terbilang(c.tot)}</div>
+  </div>
+  <div class="tots">
+   <div class="tr"><span>Subtotal</span><span>${fmtRp(c.sub)}</span></div>
+   <div class="tr"><span>Diskon</span><span>${fmtRp(c.disk)}</span></div>
+   <div class="tr"><span>PPN ${d.ppn?`(${d.ppnRate}%)`:"(tidak dikenakan)"}</span><span>${fmtRp(c.ppn)}</span></div>
+   <div class="tr grand"><span>TOTAL</span><span>${fmtRp(c.tot)}</span></div>
+   <div class="tr"><span>Sudah Dibayar</span><span>${fmtRp(d.dp)}</span></div>
+   <div class="tr sisa"><span>SISA TAGIHAN</span><span>${fmtRp(c.sisa)}</span></div>
+  </div>
+ </div>
+ <div class="note-sign">
+  <div class="nt"><span class="cap">Catatan:</span><br>${esc(d.catatan)}</div>
+  <div class="sig">${esc(p.kota||"")}, ${fmtTgl(d.tgl)||"________"}<div class="nm">${esc(p.ttd||"(nama)")}</div><div class="jb">${esc(p.jabatan)}</div></div>
+ </div>
+ <div class="thanks">Terima kasih atas kepercayaan Anda.</div>`;
+ $("paper").innerHTML=h;
+ $("metaSlot").innerHTML=`<b>No.</b> ${esc(d.no)}<br><b>Tanggal</b> ${fmtTgl(d.tgl)}<br><b>Jatuh Tempo</b> ${fmtTgl(d.tempo)||"-"}`;
+}
+
+function renderKwitansi(){
+ const d=state.docs.kwitansi,p=state.profile;
+ $("paper").innerHTML=`
+ ${bizHead("")}
+ <div class="kw-frame">
+  <div class="kw-title">KWITANSI</div><div class="kw-no">No. ${esc(d.no)}</div>
+  <div class="kw-row"><div class="lb">Sudah terima dari</div><div class="vl">${esc(d.dari)||"&nbsp;"}</div></div>
+  <div class="kw-row"><div class="lb">Uang sejumlah</div><div class="vl em">${terbilang(d.jumlah)}</div></div>
+  <div class="kw-row"><div class="lb">Untuk pembayaran</div><div class="vl">${esc(d.untuk)||"&nbsp;"}</div></div>
+  <div class="kw-foot">
+   <div><div class="kw-amt">${fmtRp(d.jumlah)}</div><div style="font-size:10.5px;color:#666;margin-top:6px">Metode: ${esc(d.metode)}</div></div>
+   <div class="sig">${esc(p.kota||"")}, ${fmtTgl(d.tgl)||"________"}<div class="nm">${esc(p.ttd||"(nama)")}</div><div class="jb">${esc(p.jabatan)}</div></div>
+  </div>
+ </div>`;
+ const m=$("metaSlot");if(m)m.innerHTML="";
+}
+
+function renderLetter(EN){
+ const d=state.docs[EN?"quotation":"penawaran"],p=state.profile,c=calc(d);
+ const f=fmtRp;
+ const ppnLb=d.ppn?`${EN?"VAT":"PPN"} (${d.ppnRate}%)`:(EN?"VAT (not applied)":"PPN (tidak dikenakan)");
+ $("paper").innerHTML=`
+ <div class="lt-kop">${p.logo?`<img class="plogo" src="${p.logo}" style="max-height:50px">`:""}
+  <div class="nm">${esc(p.nama||"Nama Usaha Anda")}</div>
+  <div class="ad">${esc(p.tagline)}${p.tagline?"<br>":""}${esc(p.alamat1)} ${esc(p.alamat2)}<br>${p.telp?"Telp/WA: "+esc(p.telp):""}${p.email?" | Email: "+esc(p.email):""}</div>
+ </div>
+ <div class="divider"></div>
+ <div class="lt-meta"><div><b>${EN?"No.":"Nomor"}</b> : ${esc(d.no)}<br><b>${EN?"Subject":"Perihal"}</b> : <b>${esc(d.perihal)}</b></div>
+ <div>${esc(p.kota)}, ${fmtTgl(d.tgl)}</div></div>
+ <div class="lt-block">${EN?"To:":"Kepada Yth."}<br><b>${esc(d.kNama||"—")}</b>${d.kUp?`<br>${EN?"Attn: ":"UP: "}${esc(d.kUp)}`:""}<br>${esc(d.kAlamat)}</div>
+ <div class="lt-block">${EN?"Dear Sir/Madam,":"Dengan hormat,"}<br>${EN?`We, ${esc(p.nama)}, are pleased to submit our price quotation as per the subject above, with the following details:`:`Bersama surat ini, kami ${esc(p.nama)} menyampaikan penawaran harga sebagaimana perihal di atas, dengan rincian sebagai berikut:`}</div>
+ <table class="itm"><tr><th style="width:5%">No</th><th>${EN?"Description":"Deskripsi"}</th><th style="width:8%">Qty</th><th style="width:9%">${EN?"Unit":"Satuan"}</th><th style="width:16%">${EN?"Unit Price":"Harga Satuan"} (Rp)</th><th style="width:17%">${EN?"Amount":"Jumlah"} (Rp)</th></tr>${itemRows(d.items)}</table>
+ <div class="tot-zone"><div></div><div class="tots">
+  <div class="tr"><span>Subtotal</span><span>${f(c.sub)}</span></div>
+  <div class="tr"><span>${EN?"Discount":"Diskon"}</span><span>${f(c.disk)}</span></div>
+  <div class="tr"><span>${ppnLb}</span><span>${f(c.ppn)}</span></div>
+  <div class="tr grand"><span>TOTAL</span><span>${f(c.tot)}</span></div>
+ </div></div>
+ <div class="lt-block"><b>${EN?"Terms & Conditions:":"Syarat & Ketentuan:"}</b><br>
+  - ${EN?"Payment":"Pembayaran"}: ${esc(d.bayar)}<br>
+  - ${EN?"Delivery":"Pengiriman"}: ${esc(d.kirim)}<br>
+  - ${EN?"Valid until":"Penawaran berlaku s/d"}: ${fmtTgl(d.berlaku)||"-"}<br>
+  - ${d.ppn?(EN?`Prices include ${d.ppnRate}% VAT.`:`Harga sudah termasuk PPN ${d.ppnRate}%.`):(EN?"Prices exclude VAT.":"Harga belum termasuk PPN.")}</div>
+ <div class="lt-block">${EN?"Thank you for your kind attention. We look forward to working with you.":"Demikian penawaran ini kami sampaikan. Besar harapan kami untuk dapat menjalin kerja sama. Atas perhatian dan kepercayaan Bapak/Ibu, kami ucapkan terima kasih."}</div>
+ <div class="note-sign"><div></div>
+  <div class="sig">${EN?"Sincerely yours,":"Hormat kami,"}<div class="nm">${esc(p.ttd||"(nama)")}</div><div class="jb">${esc(p.jabatan)}</div></div>
+ </div>`;
+}
+
+function renderProforma(){
+ const d=state.docs.proforma,p=state.profile;
+ const sub=d.items.reduce((a,it)=>a+(Number(it.q)||0)*(Number(it.h)||0),0);
+ const curName={USD:"US Dollars",EUR:"Euros",SGD:"Singapore Dollars",IDR:"Indonesian Rupiah"}[d.cur]||d.cur;
+ let rows="";d.items.filter(it=>it.d||Number(it.h)).forEach((it,i)=>{
+  rows+=`<tr><td class="c">${i+1}</td><td>${esc(it.d)}</td><td class="c">${esc(it.q)}</td><td class="c">${esc(it.s)}</td><td class="r">${fmtCur(it.h,d.cur)}</td><td class="r">${fmtCur((Number(it.q)||0)*(Number(it.h)||0),d.cur)}</td></tr>`});
+ for(let i=d.items.filter(it=>it.d||Number(it.h)).length;i<4;i++)rows+=`<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td></tr>`;
+ let h=bizHead("PROFORMA INVOICE");
+ h+=`<div class="divider"></div>
+ <div class="bill-to"><div class="cap">Consignee / Buyer</div><div class="nm">${esc(d.kNama||"—")}</div><div class="ad">${esc(d.kAlamat)}</div><div class="ad">${esc(d.kNegara)}</div></div>
+ <table class="itm"><tr><th style="width:5%">No</th><th>Description of Goods</th><th style="width:8%">Qty</th><th style="width:9%">Unit</th><th style="width:16%">Unit Price (${d.cur})</th><th style="width:17%">Amount (${d.cur})</th></tr>${rows}</table>
+ <div class="tot-zone">
+  <div class="pay-info"><div class="cap">Beneficiary Bank Details</div>
+   Bank: <b>${esc(p.bank||"-")}</b><br>${p.swift?"SWIFT: <b>"+esc(p.swift)+"</b><br>":""}Acc. No: <b>${esc(p.rek||"-")}</b><br>Acc. Name: <b>${esc(p.an||"-")}</b>
+   <div class="terbilang-box" style="text-transform:uppercase"><b>SAY:</b> ${esc(d.words)||amountWordsEN(sub,curName)}</div>
+   <div style="margin-top:8px;font-size:11px">Payment Terms: ${esc(d.bayar)}</div>
+  </div>
+  <div class="tots"><div class="tr grand"><span>TOTAL (${d.cur})</span><span>${fmtCur(sub,d.cur)}</span></div></div>
+ </div>
+ <div class="note-sign">
+  <div class="nt" style="font-style:italic">This proforma invoice is valid until ${fmtTgl(d.berlaku)||"-"}.</div>
+  <div class="sig">${esc(p.kota||"")}, ${fmtTgl(d.tgl)||"____"}<br><b>${esc(p.nama)}</b><div class="nm">${esc(p.ttd||"(nama)")}</div><div class="jb">${esc(p.jabatan)}</div></div>
+ </div>`;
+ $("paper").innerHTML=h;
+ $("metaSlot").innerHTML=`<b>No.</b> ${esc(d.no)}<br><b>Date</b> ${fmtTgl(d.tgl)}`;
+}
+
+function renderPaper(){({invoice:renderInvoice,kwitansi:renderKwitansi,penawaran:()=>renderLetter(false),quotation:()=>renderLetter(true),proforma:renderProforma})[cur]()}
+function renderAll(){renderProfil();renderDocForm();renderPaper()}
+
+/* ---------- events ---------- */
+document.addEventListener("input",e=>{
+ const k=e.target.dataset.k;
+ if(k){
+  let v=e.target.value;
+  if(e.target.tagName==="SELECT"&&(v==="yes"||v==="no"))v=(v==="yes");
+  const[root,key]=k.split(".");
+  if(root==="p")state.profile[key]=v;else state.docs[cur][key]=v;
+  save();renderPaper();
+  if(cur==="kwitansi"){const t=$("tbPrev");if(t)t.textContent=terbilang(state.docs.kwitansi.jumlah)}
+  if(k==="d.ppn"){renderDocForm()}
+  return}
+ if(e.target.dataset.it!==undefined){
+  const it=state.docs[cur].items[+e.target.dataset.it];
+  it[e.target.dataset.f]=e.target.value;
+  save();renderPaper()}
+});
+$("tabs").addEventListener("click",e=>{
+ if(e.target.dataset.t){cur=e.target.dataset.t;
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("active",b===e.target));
+  renderDocForm();renderPaper()}
+});
+$("year").textContent=new Date().getFullYear();
+if(!state.profile.nama)$("profilBox").open=true;
+renderAll();
+</script>
+</body>
+</html>
