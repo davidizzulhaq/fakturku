@@ -29,8 +29,9 @@ header a{color:#cdd8ea;text-decoration:none;font-size:13px;margin-left:auto}
 .card li{padding:5px 0 5px 26px;position:relative;font-size:13.5px}
 .card li::before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:800}
 .card li.no::before{content:"—";color:#bbb}
-.card a.buy{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;padding:12px;border-radius:9px;font-weight:700;font-size:14.5px}
+.card a.buy,.card span.buy{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;padding:12px;border-radius:9px;font-weight:700;font-size:14.5px}
 .card.feat a.buy{background:var(--teal)}
+.card span.buy.soon{background:#e7edf5;color:var(--navy);border:1.5px dashed #9db4cd;cursor:default;font-size:13px}
 .sec{margin:46px 0}
 .sec h2{color:var(--navy);font-size:22px;margin-bottom:16px;text-align:center}
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
@@ -80,7 +81,7 @@ footer a{color:#7fd1c7}
         <li class="no">Surat Penawaran ID/EN</li>
         <li class="no">Stok & Piutang</li>
       </ul>
-      <a class="buy" href="mailto:davidizzulhaq@gmail.com?subject=Pesan%20Starter%20-%20UMKM%20Beres&body=Halo%2C%20saya%20mau%20pesan%20paket%20STARTER%20(Rp15.000).%20Mohon%20info%20pembayarannya.">Pesan Sekarang</a>
+      <span class="buy soon">Segera — Pembayaran QRIS Otomatis</span>
     </div>
     <div class="card feat">
       <h3>Paket Lengkap</h3>
@@ -93,7 +94,7 @@ footer a{color:#7fd1c7}
         <li>Stok barang + alert restok</li>
         <li>Mini-CRM pelanggan</li>
       </ul>
-      <a class="buy" href="mailto:davidizzulhaq@gmail.com?subject=Pesan%20Paket%20Lengkap%20-%20UMKM%20Beres&body=Halo%2C%20saya%20mau%20pesan%20PAKET%20LENGKAP%20(Rp39.000).%20Mohon%20info%20pembayarannya.">Pesan Sekarang</a>
+      <span class="buy soon">Segera — Pembayaran QRIS Otomatis</span>
     </div>
     <div class="card">
       <h3>Bundle Pro</h3>
@@ -106,10 +107,10 @@ footer a{color:#7fd1c7}
         <li>Lisensi komersial (boleh dipakai melayani klien)</li>
         <li>Prioritas support & request fitur</li>
       </ul>
-      <a class="buy" href="mailto:davidizzulhaq@gmail.com?subject=Pesan%20Bundle%20Pro%20-%20UMKM%20Beres&body=Halo%2C%20saya%20mau%20pesan%20BUNDLE%20PRO%20(Rp99.000).%20Mohon%20info%20pembayarannya.">Pesan Sekarang</a>
+      <span class="buy soon">Segera — Pembayaran QRIS Otomatis</span>
     </div>
   </div>
-  <div class="note">Pembayaran via transfer/QRIS — file dikirim ke email Anda. Garansi 7 hari uang kembali, tanpa tanya.</div>
+  <div class="note">Pembayaran QRIS/e-wallet dengan pengiriman file OTOMATIS sedang disiapkan — sementara itu, nikmati versi gratis di bawah. Garansi 7 hari uang kembali tetap berlaku saat penjualan dibuka.</div>
 
   <div class="sec">
     <h2>Coba Gratis Dulu</h2>
@@ -154,7 +155,7 @@ footer a{color:#7fd1c7}
 
 <footer>
   <b>UMKM Beres</b> — alat administrasi untuk UMKM Indonesia<br>
-  <a href="index.html">Fakturku — buat invoice online gratis</a> · Kontak: davidizzulhaq@gmail.com<br>
+  <a href="index.html">Fakturku — buat invoice online gratis</a><br>
   © <span id="y"></span> UMKM Beres
 </footer>
 <script>document.getElementById("y").textContent=new Date().getFullYear()</script>
