@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://davidizzulhaq.github.io/fakturku/sitemap.xml
