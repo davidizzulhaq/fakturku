@@ -1,4 +1,4 @@
+# Indexing ditahan sementara sampai domain/URL brand siap (bukan username pribadi).
+# Setelah repo pindah ke org brand, ganti ke Allow + aktifkan sitemap.
 User-agent: *
-Allow: /
-
-Sitemap: https://davidizzulhaq.github.io/fakturku/sitemap.xml
+Disallow: /
